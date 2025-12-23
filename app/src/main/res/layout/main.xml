@@ -19,6 +19,5 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:minHeight="64dp"
-        android:inputType="textUri"
-        android:focusedByDefault="true"/>
+        android:inputType="textUri"/>
 </LinearLayout>
