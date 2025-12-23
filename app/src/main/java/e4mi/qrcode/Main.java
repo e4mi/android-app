@@ -43,7 +43,7 @@ public class Main extends Activity {
     text.addTextChangedListener(new TextWatcher() {
       @Override
       public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+      }
     });
 
     if (Intent.ACTION_SEND.equals(action) && type != null) {
