@@ -40,10 +40,15 @@ public class Main extends Activity {
 //      }
 //    });
     // on text change
-    text.addTextChangedListener(new TextWatcher() {
+    text.addTextChangedListener(new EditText.TextWatcher() {
       @Override
       public void afterTextChanged(Editable s) {
         image.setImageBitmap(qrCode(text.getText().toString()));
+      }
+
+      @Override
+      public void onTextChanged(CharSequence s, int start, int before, int count) {
+
       }
     });
 
