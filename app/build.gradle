@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'e4mi.app'
+    namespace 'e4mi.qrcode'
     compileSdk 36
 
     defaultConfig {
-        applicationId 'e4mi.app'
+        applicationId 'e4mi.qrcode'
         minSdk 1
         targetSdk 36
         versionCode 1

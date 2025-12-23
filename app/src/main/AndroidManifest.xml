@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:a="http://schemas.android.com/apk/res/android">
-    <application a:label="App" a:icon="@mipmap/icon">
+    <application a:label="QR Code" a:icon="@mipmap/icon">
         <activity a:name=".Main" a:exported="true">
             <intent-filter>
                 <action a:name="android.intent.action.MAIN" />
                 <category a:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action a:name="android.intent.action.SEND" />
+                <category a:name="android.intent.category.DEFAULT" />
+                <data a:mimeType="text/plain" />
             </intent-filter>
         </activity>
     </application>
