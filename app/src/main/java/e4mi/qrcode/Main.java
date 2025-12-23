@@ -7,9 +7,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import io.nayuki.qrcodegen.QrCode;
 import java.util.Objects;
 
@@ -26,49 +29,28 @@ public class Main extends Activity {
     EditText text = findViewById(R.id.text);
     ImageView image = findViewById(R.id.image);
 
+    text.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+      @Override
+      public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+          image.setImageBitmap(qrCode(text.getText()));
+        }
+      }
+    });
+
     if (Intent.ACTION_SEND.equals(action) && type != null) {
       if ("text/plain".equals(type)) {
         String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
         if (sharedText != null) {
-
-          showQR(sharedText);
+          text.setText(sharedText);
+          Bitmap qr = qrCode(sharedText);
+          image.setImageBitmap(qr);
         }
       }
-    } else {
-      EditText input = new EditText(this);
-      new AlertDialog.Builder(this)
-        .setTitle("Content")
-        .setView(input)
-        .setPositiveButton(
-          "OK",
-          new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-              String userInput = input.getText().toString();
-              showQR(userInput);
-            }
-          }
-        )
-        .setNegativeButton(
-          "Cancel",
-          new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-              dialog.cancel();
-              finish();
-            }
-          }
-        )
-        .create()
-        .show();
     }
   }
 
-  private Bitmap showQR(String text) {
-    Bitmap bitmap = toBitmap(qrCode, 10, 4);
-  }
-
-  private static Bitmap toBitmap(String text) {
+  private static Bitmap qrCode(String text) {
     QrCode qr = QrCode.encodeText(text, QrCode.Ecc.LOW);
     int border = 4;
     int scale = 8;
