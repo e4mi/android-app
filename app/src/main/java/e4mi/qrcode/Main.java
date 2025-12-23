@@ -19,15 +19,18 @@ public class Main extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-
+    setContentView(R.layout.main);
     Intent intent = getIntent();
     String action = intent.getAction();
     String type = intent.getType();
+    EditText text = findViewById(R.id.text);
+    ImageView image = findViewById(R.id.image);
 
     if (Intent.ACTION_SEND.equals(action) && type != null) {
       if ("text/plain".equals(type)) {
         String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
         if (sharedText != null) {
+
           showQR(sharedText);
         }
       }
