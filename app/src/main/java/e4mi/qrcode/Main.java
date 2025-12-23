@@ -1,12 +1,14 @@
 package e4mi.qrcode;
 
 import android.app.Activity;
-import android.app.Dialog;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.ImageView;
 import io.nayuki.qrcodegen.QrCode;
 import java.util.Objects;
@@ -30,7 +32,7 @@ public class Main extends Activity {
         }
       }
     } else {
-      final EditText input = new EditText(this);
+      EditText input = new EditText(this);
       AlertDialog dialog = new AlertDialog.Builder(this)
         .setTitle("Content")
         .setView(input)
