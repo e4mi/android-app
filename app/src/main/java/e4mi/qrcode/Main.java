@@ -33,7 +33,7 @@ public class Main extends Activity {
       }
     } else {
       EditText input = new EditText(this);
-      AlertDialog dialog = new AlertDialog.Builder(this)
+      new AlertDialog.Builder(this)
         .setTitle("Content")
         .setView(input)
         .setPositiveButton(
@@ -56,7 +56,8 @@ public class Main extends Activity {
             }
           }
         )
-        .create();
+        .create()
+        .show();
     }
   }
 
