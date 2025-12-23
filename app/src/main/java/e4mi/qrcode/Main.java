@@ -58,7 +58,7 @@ public class Main extends Activity {
     }
   }
 
-  private showQR(String text) {
+  private void showQR(String text) {
     QrCode qrCode = QrCode.encodeText(text, QrCode.Ecc.LOW);
     Bitmap bitmap = toBitmap(qrCode, 10, 4);
     ImageView imageView = new ImageView(this);
