@@ -64,19 +64,14 @@ public class Main extends Activity {
     }
   }
 
-  private void showQR(String text) {
-    QrCode qrCode = QrCode.encodeText(text, QrCode.Ecc.LOW);
+  private Bitmap showQR(String text) {
     Bitmap bitmap = toBitmap(qrCode, 10, 4);
-    ImageView imageView = new ImageView(this);
-    imageView.setImageBitmap(bitmap);
-    setContentView(imageView);
   }
 
-  private static Bitmap toBitmap(QrCode qr, int scale, int border) {
-    Objects.requireNonNull(qr);
-    if (scale <= 0 || border < 0) throw new IllegalArgumentException(
-      "Value out of range"
-    );
+  private static Bitmap toBitmap(String text) {
+    QrCode qr = QrCode.encodeText(text, QrCode.Ecc.LOW);
+    int border = 4;
+    int scale = 8;
     int size = qr.size + border * 2;
     Bitmap result = Bitmap.createBitmap(
       size * scale,
