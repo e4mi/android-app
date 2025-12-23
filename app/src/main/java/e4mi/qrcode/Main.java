@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.Window;
 import android.widget.EditText;
@@ -29,14 +31,21 @@ public class Main extends Activity {
     EditText text = findViewById(R.id.text);
     ImageView image = findViewById(R.id.image);
 
-    text.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//    text.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//      @Override
+//      public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//        if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+//          image.setImageBitmap(qrCode(text.getText()));
+//        }
+//      }
+//    });
+    // on text change
+    text.addTextChangedListener(new TextWatcher() {
       @Override
-      public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-          image.setImageBitmap(qrCode(text.getText()));
-        }
+      public void afterTextChanged(Editable s) {
+        image.setImageBitmap(qrCode(text.getText().toString()));
       }
-    });
+      });
 
     if (Intent.ACTION_SEND.equals(action) && type != null) {
       if ("text/plain".equals(type)) {
