@@ -45,15 +45,15 @@ public class Main extends Activity {
       public void afterTextChanged(Editable s) {
         image.setImageBitmap(qrCode(text.getText().toString()));
       }
-      });
+    });
 
     if (Intent.ACTION_SEND.equals(action) && type != null) {
       if ("text/plain".equals(type)) {
         String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
         if (sharedText != null) {
           text.setText(sharedText);
-          Bitmap qr = qrCode(sharedText);
-          image.setImageBitmap(qr);
+//          Bitmap qr = qrCode(sharedText);
+//          image.setImageBitmap(qr);
         }
       }
     }
